@@ -62,5 +62,5 @@ export const PLAYERS = [
   { name: 'Kesari', hex: '#ff7a18', deep: '#a43400', token: '🐘' },
   { name: 'Peacock', hex: '#13b0a5', deep: '#0a5f58', token: '🦚' },
   { name: 'Rani', hex: '#e2338c', deep: '#8b1050', token: '🐅' },
-  { name: 'Indigo', hex: '#5a5bf0', deep: '#2a2a9c', token: '🐍' },
+  { name: 'Unt', hex: '#5a5bf0', deep: '#2a2a9c', token: '🐫' },
 ]
