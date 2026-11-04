@@ -58,7 +58,8 @@ function Snake({ snake, i }) {
       <g transform={`translate(${head.x} ${head.y}) rotate(${angle})`}>
         <ellipse rx="0.42" ry="0.3" fill={skin.body} />
         <ellipse rx="0.42" ry="0.3" fill="url(#headShine)" opacity="0.45" />
-        <path d="M0.4 0 L0.86 -0.1 L0.6 0 L0.86 0.1 Z" fill="#e03131" />
+        <path d="M0.38 0 L0.6 0 M0.6 0 L0.75 -0.1 M0.6 0 L0.75 0.1"
+          stroke="#e03131" strokeWidth="0.05" fill="none" strokeLinecap="round" />
         <circle cx="0.06" cy="-0.14" r="0.085" fill="#fff" />
         <circle cx="0.06" cy="0.14" r="0.085" fill="#fff" />
         <circle cx="0.08" cy="-0.14" r="0.042" fill="#111" />
@@ -143,13 +144,19 @@ export default function BoardSVG({ state }) {
                   <circle cx={x} cy={y} r="0.4"
                     className={jump.kind === 'ladder' ? 'mark-ladder' : 'mark-snake'} />
                 )}
-                <text x={x - 0.42} y={y - 0.28} className="cell-num">{n}</text>
               </g>
             )
           })}
 
           {LADDERS.map((l) => <Ladder key={'l' + l.from} ladder={l} />)}
           {SNAKES.map((sn, i) => <Snake key={'s' + sn.from} snake={sn} i={i} />)}
+
+          {/* numbers ride on top of the art so nothing hides a square */}
+          {Array.from({ length: 100 }).map((_, k) => {
+            const n = k + 1
+            const { x, y } = centerOf(n)
+            return <text key={'n' + n} x={x - 0.42} y={y - 0.28} className="cell-num">{n}</text>
+          })}
         </svg>
 
         <div className="token-layer">
@@ -161,7 +168,7 @@ export default function BoardSVG({ state }) {
             const c = PLAYERS[p.id]
             const style = at
               ? { left: `${at.x * 10}%`, top: `${at.y * 10}%`, transform: `translate(calc(-50% + ${dx}px), -55%)` }
-              : { left: '-7%', top: `${96 - p.id * 9}%`, transform: 'translate(-50%, -50%)' }
+              : { left: `${5 + p.id * 8}%`, top: '105%', transform: 'translate(-50%, -50%)' }
             return (
               <span key={p.id}
                 className={'token' + (state.turn === p.id ? ' token-turn' : '') + (p.pos === 100 ? ' token-done' : '')}
