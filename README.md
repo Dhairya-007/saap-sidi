@@ -9,6 +9,8 @@ Frontend only. React + Vite, no backend.
 
 ![stack](https://img.shields.io/badge/React-18-61dafb) ![stack](https://img.shields.io/badge/Vite-5-646cff) ![stack](https://img.shields.io/badge/SVG-hand--drawn-ff8f3c)
 
+![Saap Sidi — the painted board with its ten snakes and nine ladders](docs/gameplay.png)
+
 ## Play
 
 ```bash
@@ -50,6 +52,10 @@ src/
 Board coordinates come from one function: square `n` → `{col, row}`, used for
 the squares, the snake endpoints, the ladder angles and the token positions,
 so nothing can drift out of alignment.
+
+## Screens
+
+<img src="docs/setup.png" width="520" alt="Choosing players and who is a computer" />
 
 ## License
 
