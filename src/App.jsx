@@ -4,6 +4,7 @@ import Panel from './components/Panel.jsx'
 import Setup from './components/Setup.jsx'
 import { createGame, reducer, aiAction } from './game/engine.js'
 import { PLAYERS } from './data/board.js'
+import RoughBorder from './components/RoughBorder.jsx'
 
 const DELAY = { walk: 170, land: 220, slide: 90, ai: 650 }
 
@@ -52,13 +53,19 @@ export default function App() {
       </main>
 
       {game.toast && (
-        <div className={'toast ' + game.toast.kind} key={game.toast.from + '-' + game.toast.to}>
-          <span className="toast-icon">{game.toast.kind === 'ladder' ? '🪜' : '🐍'}</span>
-          <div>
-            <strong>{game.toast.from} → {game.toast.to}</strong>
-            <p>{game.toast.text}</p>
+        <RoughBorder
+          className="toast-rough"
+          color={game.toast.kind === 'ladder' ? '#2f9e44' : '#e03131'}
+          key={game.toast.from + '-' + game.toast.to}
+        >
+          <div className={'toast rough-skin ' + game.toast.kind}>
+            <span className="toast-icon">{game.toast.kind === 'ladder' ? '🪜' : '🐍'}</span>
+            <div>
+              <strong>{game.toast.from} → {game.toast.to}</strong>
+              <p>{game.toast.text}</p>
+            </div>
           </div>
-        </div>
+        </RoughBorder>
       )}
 
       {winner && (
